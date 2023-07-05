@@ -13,9 +13,6 @@ app=FastAPI()
 
 @app.get("/")
 def get_hun_sum(youtubelink: str):
-  print("-----------------------------------------")
-  print(youtubelink)
-  print("-----------------------------------------")
   output=""
   hun_sum=""
   if (youtubelink == ""):
@@ -26,9 +23,6 @@ def get_hun_sum(youtubelink: str):
         output="There is no Youtube narration"
     output={"Hungarian summary": hun_sum}
   return output
-
-if __name__ == "__main__":
-  uvicorn.run("main:app")
 
 def open_driver():
   # Not showing the browser itself, this is the HEADLESS mode
