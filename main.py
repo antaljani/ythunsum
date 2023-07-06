@@ -1,9 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By 
 from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+
 import spacy
 import time
 from fastapi import FastAPI
@@ -28,9 +28,9 @@ def open_driver():
   # Not showing the browser itself, this is the HEADLESS mode
   global driver
   options = webdriver.ChromeOptions()
-  options.add_argument('--headless')
+  options.add_argument('--headless=new')
   # options.add_argument('--disable-gpu')
-  driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
+  driver = webdriver.Chrome(options=options)
   driver.implicitly_wait(5)
 
 def TranslateText_EN_HU(source_text):
