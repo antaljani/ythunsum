@@ -27,9 +27,10 @@ def get_hun_sum(youtubelink: str=None):
 def open_driver():
   # Not showing the browser itself, this is the HEADLESS mode
   global driver
-  options = webdriver.ChromeOptions()
+  global options
+  options=Options()
   options.add_argument('--headless=new')
-  # options.add_argument('--disable-gpu')
+  options.add_argument('--disable-gpu')
   driver = webdriver.Chrome(options=options)
   driver.implicitly_wait(5)
 
