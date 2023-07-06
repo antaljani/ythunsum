@@ -12,10 +12,10 @@ import uvicorn
 app=FastAPI()
 
 @app.get("/")
-def get_hun_sum(youtubelink: str):
+def get_hun_sum(youtubelink: str=None):
   output=""
   hun_sum=""
-  if (youtubelink == ""):
+  if youtubelink is None:
     output={"Example":"GET youtubelink"}
   else:
     hun_sum=  yt_summary_hun(youtubelink)
@@ -75,11 +75,17 @@ def close_driver():
   driver.close()
 
 def yt_summary_hun(yt_link):
+    if not yt_link:
+        return "Invalid YouTube link" 
+    
     open_driver()
-    yt_link=yt_link[8:]
-    driver.get(f"https://summarize.tech/{yt_link}")
-    summary=driver.find_element(By.XPATH, '//*[@id="__next"]/div[1]/div/section/p')
-    summary_hun=full_text_translate(summary.text)
-    return summary_hun
+    try:
+        yt_link = yt_link[8:]
+        driver.get(f"https://summarize.tech/{yt_link}")
+        summary = driver.find_element(By.XPATH, '//*[@id="__next"]/div[1]/div/section/p')
+        summary_hun = full_text_translate(summary.text)
+        return summary_hun
+    finally:
+        close_driver()
 
 # print(yt_summary_hun("https://youtu.be/eedaafutru4"))
