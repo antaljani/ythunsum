@@ -30,7 +30,7 @@ def open_driver():
   options = webdriver.ChromeOptions()
   options.add_argument('--headless')
   # options.add_argument('--disable-gpu')
-  driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+  driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
   driver.implicitly_wait(5)
 
 def TranslateText_EN_HU(source_text):
