@@ -34,7 +34,7 @@ def open_driver():
   # Set the ChromeDriver binary path explicitly
   chrome_binary_path = "/app/.apt/usr/bin/google-chrome"  # Path to Chrome binary on Heroku
   options.binary_location = chrome_binary_path
-  driver = webdriver.Chrome(executable_path=chrome_binary_path, options=options)
+  driver = webdriver.Chrome(options=options)
   driver.implicitly_wait(5)
 
 def TranslateText_EN_HU(source_text):
@@ -89,4 +89,4 @@ def yt_summary_hun(yt_link):
     finally:
         close_driver()
 
-# print(yt_summary_hun("https://youtu.be/eedaafutru4"))
+print(yt_summary_hun("https://youtu.be/eedaafutru4"))
