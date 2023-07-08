@@ -31,7 +31,10 @@ def open_driver():
   options=Options()
   options.add_argument('--headless=new')
   options.add_argument('--disable-gpu')
-  driver = webdriver.Chrome(options=options)
+  # Set the ChromeDriver binary path explicitly
+  chrome_binary_path = "/app/.apt/usr/bin/google-chrome"  # Path to Chrome binary on Heroku
+  options.binary_location = chrome_binary_path
+  driver = webdriver.Chrome(executable_path="chromedriver", options=options)
   driver.implicitly_wait(5)
 
 def TranslateText_EN_HU(source_text):
